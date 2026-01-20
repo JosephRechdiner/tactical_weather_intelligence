@@ -1,4 +1,3 @@
-import mysql
 from mysql.connector import MySQLConnection 
 from datetime import datetime
 
@@ -15,17 +14,17 @@ class RecordsService:
                                        record["temperature"], record["wind_speed"], record["humidity"], record["temperature_category"], record["wind_category"],))
             cnx.commit()
             return {"msg": "records inserted succesfully!"}
-        except mysql.connector.Error as e:
+        except Exception as e:
             raise e
 
     @staticmethod
     def get_records(cnx: MySQLConnection):
-        query = 'SELECT * FROM records_weat;'
+        query = 'SELECT * FROM records_weather;'
         try:
             cursor = cnx.cursor(dictionary=True)
             cursor.execute(query) 
             return cursor.fetchall()
-        except mysql.connector.Error as e:
+        except Exception as e:
             raise e
     
     @staticmethod
@@ -35,7 +34,7 @@ class RecordsService:
             cursor = cnx.cursor(dictionary=True)
             cursor.execute(query)
             return cursor.fetchall()
-        except mysql.connector.Error as e:
+        except Exception as e:
             raise e
         
     @staticmethod
@@ -45,7 +44,7 @@ class RecordsService:
             cursor = cnx.cursor(dictionary=True)
             cursor.execute(query)
             return cursor.fetchall()
-        except mysql.connector.Error as e:
+        except Exception as e:
             raise e
         
     @staticmethod
@@ -55,7 +54,7 @@ class RecordsService:
             cursor = cnx.cursor(dictionary=True)
             cursor.execute(query)
             return cursor.fetchall()
-        except mysql.connector.Error as e:
+        except Exception as e:
             raise e
 
     @staticmethod
@@ -65,6 +64,6 @@ class RecordsService:
             cursor = cnx.cursor(dictionary=True)
             cursor.execute(query)
             return cursor.fetchall()
-        except mysql.connector.Error as e:
+        except Exception as e:
             raise e
 
