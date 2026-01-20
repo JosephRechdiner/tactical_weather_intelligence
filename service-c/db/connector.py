@@ -18,4 +18,3 @@ class MySQLManager:
             return cnx
         except mysql.connector.Error as e:
             raise e
-            
