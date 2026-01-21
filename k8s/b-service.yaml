@@ -7,5 +7,5 @@ spec:
     app: service-b-deployment
   ports:
   - protocol: TCP
-    port: 90
+    port: 9060
     targetPort: 9060

@@ -39,7 +39,7 @@ def fetch_hourly_weather(latitude: float, longitude: float):
     response.raise_for_status()
     return response.json()["hourly"]
 
-import json
+
 def ingest_weather_for_location(location_name):
     records = []
 

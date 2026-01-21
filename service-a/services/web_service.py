@@ -7,6 +7,7 @@ class Item(BaseModel):
 
 INTERNAL_URL = os.getenv("INTERNAL_URL")
 
+
 def send_to_service_b(data):
     data = Item(data=data)
     try:

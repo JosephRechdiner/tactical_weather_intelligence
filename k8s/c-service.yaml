@@ -8,5 +8,5 @@ spec:
     app: service-c-deployment
   ports:
   - protocol: TCP
-    port: 100
+    port: 8080
     targetPort: 8080

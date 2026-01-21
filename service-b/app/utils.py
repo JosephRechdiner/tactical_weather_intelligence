@@ -3,7 +3,6 @@ import os
 import requests 
 import models
 
-URL = os.getenv('SERVICE_C_URL')
 
 
 class Data_hendler:
@@ -17,7 +16,7 @@ class Data_hendler:
         self.df.fillna(self.df)    
 
     def add_temperature_category_colume(self): 
-        self.df['temperature_categor'] = pd.cut(x=self.df['temperature'], bins=[-100,18,25,100], labels=['cold', 'moderate', 'hot'])
+        self.df['temperature_category'] = pd.cut(x=self.df['temperature'], bins=[-100,18,25,100], labels=['cold', 'moderate', 'hot'])
 
     def add_wind_category(self):
         self.df['wind_category'] = pd.cut(x=self.df['wind_speed'], bins=[0,10,1000], labels=['calm', 'windy'])      
@@ -26,13 +25,12 @@ class Data_hendler:
         return self.df.to_dict('records') 
 
 
-class Send_data:
+class Send_data: 
     def __init__(self):
-      self.url = URL 
-
+         self.URL = os.getenv('SERVICE_C_URL')
     def send_data(self, data): 
         data_obj = models.Weather_information_list(data=data)
-        result = requests.post(url=self.url, json=data_obj.model_dump(mode='json'))
+        result = requests.post(url=self.URL, json=data_obj.model_dump(mode='json'))
         return result.json()
         
 

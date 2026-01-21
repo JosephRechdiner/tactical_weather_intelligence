@@ -1,4 +1,4 @@
-from datetime import datetime
+
 from fastapi import APIRouter
 from utils import ingest_weather_for_location
 from services.web_service import send_to_service_b
