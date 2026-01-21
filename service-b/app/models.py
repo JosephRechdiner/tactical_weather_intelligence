@@ -14,4 +14,4 @@ class Weather_information(BaseModel):
     humidity: int
     
 class Weather_information_list(BaseModel):
-    info: list[dict]
+    data: list[dict]

@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-
+import json
 # --------- Helper: Geocoding ----------
 def fetch_coordinates(location_name: str):
     url = "https://geocoding-api.open-meteo.com/v1/search"
@@ -63,7 +63,7 @@ def ingest_weather_for_locations(locations):
         # 3. Flatten to records (ONE record per hour per location)
         for i in range(len(times)):
             record = {
-                "timestamp": datetime.fromisoformat(times[i]),
+                "timestamp": str(datetime.fromisoformat(times[i])),
                 "location_name": location["location_name"],
                 "country": location["country"],
                 "latitude": location["latitude"],
@@ -86,3 +86,27 @@ data = ingest_weather_for_locations(locations)
 
 data[:]
 
+# data = [
+#   {
+#     "timestamp": "string",
+#     "location_name": "string",
+#     "country": "string",
+#     "latitude": -90,
+#     "longitude": 1,
+#     "temperature": 0,
+#     "wind_speed": 0,
+#     "humidity": 0
+#   }
+# ]
+
+from pydantic import BaseModel
+
+class Weather_information_list(BaseModel):
+    data: list[dict]
+
+import requests
+data = Weather_information_list(data=data)
+print(type(data))
+a = requests.post(url='http://localhost:9060/ingest', json=data.model_dump(mode='json'))
+
+print(a)

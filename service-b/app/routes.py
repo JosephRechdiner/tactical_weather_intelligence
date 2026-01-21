@@ -10,7 +10,7 @@ send_service = utils.Send_data()
 
 
 @router.post('/ingest')
-def post_ingest(info: list[models.Weather_information]):
+def post_ingest(info: models.Weather_information_list):
     try:
         data = utils.Data_hendler(info)
         data = data.return_data_dict()

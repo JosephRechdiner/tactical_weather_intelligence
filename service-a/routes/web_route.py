@@ -14,7 +14,6 @@ web_router = APIRouter()
 def start_ingestion(location_name: str):
     try:
         data = ingest_weather_for_location(location_name)
-        # data_obj = Records(data=data)
         return send_to_service_b(data)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
