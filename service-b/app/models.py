@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 class Weather_information(BaseModel):
-    timestamp: datetime
+    timestamp: str
     location_name: str
     country: str
     latitude: float = Field(...,ge=-90,le=90)
@@ -13,4 +13,5 @@ class Weather_information(BaseModel):
     wind_speed: float
     humidity: int
     
-
+class Weather_information_list(BaseModel):
+    info: list[dict]
