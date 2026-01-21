@@ -7,9 +7,10 @@ from models.schemas import Info
 manager = MySQLManager()
 records_router = APIRouter()
 
+
 @records_router.post("/records")
 def post_records(records: Info, cnx: MySQLConnection = Depends(manager.get_cnx)):
-    try:
+    try:      
         return RecordsService.insert_records(records.data, cnx)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
