@@ -1,9 +1,16 @@
 from fastapi import FastAPI
 from routes.records_route import records_router
-import uvicorn
+from contextlib import asynccontextmanager
+from routes.records_route import init_db, manager
 
-app = FastAPI()
+
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    cnx = manager.get_cnx()
+    init_db(cnx)
+    yield
+    
+app = FastAPI(lifespan=lifespan)
 app.include_router(records_router)
-
-if __name__ == "__main__":
-    uvicorn.run(app, host='localhost', port=8080)

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: service-b-deployment
-        image: taktuk/service-b:v1
+        image: taktuk/service-b:v4
         ports:
         - containerPort: 9060
         env:
