@@ -1,6 +1,5 @@
 import os
 import requests
-
 from pydantic import BaseModel    
 
 class Weather_information_list(BaseModel):

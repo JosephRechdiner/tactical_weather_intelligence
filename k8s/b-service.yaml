@@ -4,7 +4,7 @@ metadata:
   name: service-b-service
 spec:
   selector:
-    app: service-b-service
+    app: service-b-deployment
   ports:
   - protocol: TCP
     port: 90
