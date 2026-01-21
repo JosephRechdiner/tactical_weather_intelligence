@@ -5,7 +5,7 @@ metadata:
   labels:
     app: service-a-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: service-a-deployment

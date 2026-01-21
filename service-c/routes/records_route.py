@@ -10,9 +10,7 @@ records_router = APIRouter()
 @records_router.post("/records")
 def post_records(records: Info, cnx: MySQLConnection = Depends(manager.get_cnx)):
     try:
-        print(records.data)
-        return {"msg": "ok"}
-        # return RecordsService.insert_records(records.data, cnx)
+        return RecordsService.insert_records(records.data, cnx)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
     
