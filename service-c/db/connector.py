@@ -1,7 +1,6 @@
 import mysql.connector
 import os
 
-
 class MySQLManager:
     def __init__(self):
         self.config = {
