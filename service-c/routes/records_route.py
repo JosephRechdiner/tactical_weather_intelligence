@@ -2,14 +2,16 @@ from fastapi import APIRouter, Depends, HTTPException
 from mysql.connector import MySQLConnection 
 from db.connector import MySQLManager
 from services.records_service import RecordsService
+from models.schemas import Info
 
 manager = MySQLManager()
 records_router = APIRouter()
 
+
 @records_router.post("/records")
-def post_records(records: list[dict], cnx: MySQLConnection = Depends(manager.get_cnx)):
+def post_records(records: Info, cnx: MySQLConnection = Depends(manager.get_cnx)):
     try:
-        return RecordsService.insert_records(records, cnx)
+        return RecordsService.insert_records(records.data, cnx)
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
     
