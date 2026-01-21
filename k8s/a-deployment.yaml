@@ -5,7 +5,7 @@ metadata:
   labels:
     app: service-a-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: service-a-deployment
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: service-a-deployment
-        image: josephrechdiner/service-a:v1
+        image: josephrechdiner/service-a:v4
         ports:
         - containerPort: 8000
         env:
